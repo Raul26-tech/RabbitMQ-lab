@@ -1,6 +1,7 @@
 package com.raul.transferservice.application.service;
 
 import com.raul.transferservice.application.helper.TransferRequestHashGenerator;
+import com.raul.transferservice.domain.exception.IdempotencyConflictException;
 import com.raul.transferservice.domain.model.Transfer;
 import com.raul.transferservice.domain.repository.StoredTransfer;
 import com.raul.transferservice.domain.repository.TransferRepository;
@@ -39,7 +40,7 @@ public class CreateTransferService {
 
 
             if (!stored.requesthash().equals(requestHash)) {
-                throw new IllegalStateException(
+                throw new IdempotencyConflictException(
                         "Idempotency-Key already used with a different request"
                 );
             }
