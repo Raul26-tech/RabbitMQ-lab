@@ -28,6 +28,12 @@ public class TransferJpaEntity {
     @Column(nullable = false)
     private String status;
 
+    @Column(name = "idempotency_key", nullable = false, unique = true)
+    private String idempotencyKey;
+
+    @Column(name = "request_hash", nullable = false, length = 64)
+    private String requestHash;
+
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
@@ -39,6 +45,8 @@ public class TransferJpaEntity {
             UUID receiverId,
             BigDecimal amount,
             String status,
+            String idempotencyKey,
+            String requestHash,
             Instant createdAt
 
     ) {
@@ -47,6 +55,8 @@ public class TransferJpaEntity {
         this.receiverId = receiverId;
         this.amount = amount;
         this.status = status;
+        this.idempotencyKey = idempotencyKey;
+        this.requestHash = requestHash;
         this.createdAt = createdAt;
     }
 
@@ -68,6 +78,14 @@ public class TransferJpaEntity {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getIdempotencyKey() {
+        return idempotencyKey;
+    }
+
+    public String getRequestHash() {
+        return requestHash;
     }
 
     public Instant getCreatedAt() {

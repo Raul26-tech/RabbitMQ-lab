@@ -63,6 +63,24 @@ public class Transfer {
         );
     }
 
+    public static Transfer restore(
+            UUID id,
+            UUID senderId,
+            UUID receiverId,
+            BigDecimal amount,
+            TransferStatus status,
+            Instant createdAt
+    ){
+        return new Transfer(
+                id,
+                senderId,
+                receiverId,
+                amount,
+                status,
+                createdAt
+        );
+    }
+
     public UUID getId() {
         return id;
     }
