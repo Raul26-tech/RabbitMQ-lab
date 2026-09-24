@@ -6,6 +6,7 @@ import com.raul.transferservice.domain.model.Transfer;
 import com.raul.transferservice.domain.repository.StoredTransfer;
 import com.raul.transferservice.domain.repository.TransferRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -19,6 +20,7 @@ public class CreateTransferService {
         this.transferRepository = transferRepository;
     }
 
+    @Transactional
     public Transfer execute(
             UUID senderId,
             UUID receiverId,
